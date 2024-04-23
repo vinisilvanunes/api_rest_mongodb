@@ -25,7 +25,7 @@ router.post('/', async (req, res)=>{
     });
 
     try{
-        const newContato = await Contato.save();
+        const newContato = await contato.save();
         res.status(201).json(newContato);
     }catch(err){
         res.status(400).json({'message': err.message});
@@ -79,3 +79,5 @@ async function getContato(req, res, next){
         return res.status(500).json({'message': err.message})
     }
 }
+
+module.exports = router;
