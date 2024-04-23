@@ -9,6 +9,14 @@ app.use(express.json());
 const contatoRouter = require('./routes/contatoRoutes');
 app.use('/contatos', contatoRouter);
 
+app.use((req,res)=>{
+  res.statusCode = 404;
+  res.send({
+    error: '123',
+    message: 'Rota inválida'
+  })
+})
+
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -24,3 +32,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
+
+module.exports = app;
